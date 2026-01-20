@@ -18,6 +18,13 @@ class TestTask(unittest.TestCase):
 
         npt.assert_allclose(A @ task.x, B, rtol=1e-7, atol=0)
 
+    def test_serialization_equality(self):
+        """Vérifie que la sérialisation/désérialisation préserve l'égalité"""
+        a = Task()
+        txt = a.to_json()
+        b = Task.from_json(txt)
+        self.assertEqual(a, b)
+
 
 if __name__ == "__main__":
     unittest.main()

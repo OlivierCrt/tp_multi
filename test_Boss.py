@@ -32,13 +32,6 @@ class TestBossMinions(unittest.TestCase):
             self.assertGreater(task.time, 0)
             self.assertEqual(task.size, 50)
 
-    def test_serialization_equality(self):
-        """Vérifie que la sérialisation/désérialisation préserve l'égalité"""
-        a = Task()
-        txt = a.to_json()
-        b = Task.from_json(txt)
-        self.assertEqual(a, b)
-
 
 if __name__ == "__main__":
     unittest.main()
