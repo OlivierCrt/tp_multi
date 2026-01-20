@@ -1,36 +1,35 @@
-name: CI
+name: Multithreading
 
 on:
   push:
+  pull_request:
 
 jobs:
-  build-and-test:
+  uv-test:
+    name: python
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v4
+        uses: astral-sh/setup-uv@v7
         with:
-          version: "latest"
+          # Install a specific version of uv.
+          version: "0.9.17"
 
-      - name: Set up Python ${{ matrix.python-version }}
-        run: uv python install ${{ matrix.python-version }}
+      - name: "Set up Python"
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: "pyproject.toml"
 
-      - name: Install dependencies
-        run: |
-          uv venv
-          uv pip install numpy pre-commit
+      - name: "Precommit"
+        run: uv run pre-commit run -a
 
-      - name: Run pre-commit checks
-        run: |
-          source .venv/bin/activate
-          pre-commit run -a
 
-      - name: Run unittest tests
+      - name: Install the project
+        run: uv sync --locked --all-extras --dev
+
+      - name: Run tests
+        # For example, using `pytest`
         run: uv run python -m unittest
