@@ -1,6 +1,7 @@
 import unittest
 from multiprocessing import Pool
 
+
 from boss import minion
 from task import Task
 
