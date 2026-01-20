@@ -23,10 +23,14 @@ jobs:
         run: uv python install ${{ matrix.python-version }}
 
       - name: Install dependencies
-        run: uv sync
+        run: |
+          uv venv
+          uv pip install numpy pre-commit
 
       - name: Run pre-commit checks
-        run: uv run pre-commit run -a
+        run: |
+          source .venv/bin/activate
+          pre-commit run -a
 
       - name: Run unittest tests
         run: uv run python -m unittest
