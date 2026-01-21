@@ -1,0 +1,3 @@
+/home/python/multi/tp_multi/build/_deps/zlib-subbuild/CMakeFiles/zlib-populate.dir
+/home/python/multi/tp_multi/build/_deps/zlib-subbuild/CMakeFiles/edit_cache.dir
+/home/python/multi/tp_multi/build/_deps/zlib-subbuild/CMakeFiles/rebuild_cache.dir
