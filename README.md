@@ -71,3 +71,32 @@ Solution received!
 Time taken by Python: 0.0010118059999513207s
 First element of x: 0.5
 ```
+## Commandes pour lancer les TPs
+
+### TP2 : Multiprocessing
+
+Exécuter le script principal (Boss) :
+```bash
+uv run boss.py
+```
+
+Lancer le benchmark :
+```bash
+uv run benchmark_minions.py
+```
+
+### TP4 : Interopérabilité C++ / Python
+
+1. Serveur Python :
+```bash
+uv run --with numpy proxy.py
+```
+
+2. Client C++ (compilation et exécution via CMake) :
+```bash
+mkdir -p build
+cd build
+cmake ..
+make
+./client
+```
